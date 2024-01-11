@@ -1,0 +1,46 @@
+<div *ngIf="playerSummary">
+    <h1><strong>Name: </strong>{{ playerSummary.name }}</h1>
+    <h2><strong>Games Played: </strong></h2>
+
+    <mat-tab-group>
+
+        <mat-tab label="Shot Data Visualization">
+            <div id="svg-container"></div>
+        </mat-tab>
+
+        <mat-tab *ngFor="let gameWrapper of playerSummary.games; let i = index" label="{{'Game ' + (i+1) + ' - ' + gameWrapper[0].date}}">
+            <div *ngFor="let game of gameWrapper" class="game-card">
+                <h3><strong>Date: </strong> {{ game.date }}</h3>
+                <p><strong>Is Starter:</strong> {{ game.player_stats.isStarter ? 'Yes' : 'No' }}</p>
+                <p><strong>Minutes:</strong> {{ game.player_stats.minutes }}</p>
+                <p><strong>Points:</strong> {{game.player_stats.points}}</p>
+                <p><strong>Assists:</strong> {{game.player_stats.assists}}</p>
+                <p><strong>Offensive Rebounds:</strong> {{game.player_stats.offensiveRebounds}}</p>
+                <p><strong>Defensive Rebounds:</strong> {{game.player_stats.defensiveRebounds}}</p>
+                <p><strong>Steals:</strong> {{game.player_stats.steals}}</p>
+                <p><strong>Blocks:</strong> {{game.player_stats.blocks}}</p>
+                <p><strong>Turnovers:</strong> {{game.player_stats.turnovers}}</p>
+                <p><strong>Offensive Fouls:</strong> {{game.player_stats.offensiveFouls}}</p>
+                <p><strong>Defensive Fouls:</strong> {{game.player_stats.defensiveFouls}}</p>
+                <p><strong>Free Throws Made:</strong> {{game.player_stats.freeThrowsMade}}</p>
+                <p><strong>Free Throws Attempted:</strong> {{game.player_stats.freeThrowsAttempted}}</p>
+                <p><strong>Two Pointers Made:</strong> {{game.player_stats.twoPointersMade}}</p>
+                <p><strong>Two Pointers Attempted:</strong> {{game.player_stats.twoPointersAttempted}}</p>
+                <p><strong>Three Pointers Made:</strong> {{game.player_stats.threePointersMade}}</p>
+                <p><strong>Three Pointers Attempted:</strong> {{game.player_stats.threePointersAttempted}}</p>
+                
+    
+            <h4><strong>Shots: </strong></h4>
+            
+            <ul>
+                <li *ngFor="let shot of game.player_stats.shots">
+                <em [ngStyle]="{'color': shot.isMake ? 'green' : 'red'}">Is Make: </em>{{ shot.isMake ? 'Yes' : 'No' }},
+                <em [ngStyle]="{'color': shot.isMake ? 'green' : 'red'}">Location X: </em>{{ shot.locationX }},
+                <em [ngStyle]="{'color': shot.isMake ? 'green' : 'red'}">Location Y: </em>{{ shot.locationY }}
+                </li>
+            </ul>
+            </div>
+        </mat-tab>
+        
+    </mat-tab-group>
+  </div>

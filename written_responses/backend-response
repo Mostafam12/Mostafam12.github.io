@@ -1,0 +1,7 @@
+The "Players" table records unique player identifiers, while the "Teams" table stores distinct team identifiers. These tables establish the foundation for player and team data management. The "Games" table captures game-specific information, including the game's date and the participating home and away teams, forming the core of match-related data. 
+
+To accommodate player-specific statistics for each game, a "PlayerStats" table is implemented. This table features foreign key relationships to link player and game data, enabling the storage of metrics such as playing minutes, points scored, assists, rebounds, steals, blocks, turnovers, and other performance metrics. 
+
+To accommodate shot-specific data during each game, a "ShotData" table is created. This table features a foreign key reference to "PlayerStats" as to link the data of shots to a given player in a given game.  "ShotData" serves to store metrics about specific shots such as is_make, location_x, and location_y. 
+
+Through a combination of primary and foreign keys, the architecture ensures data integrity and facilitates efficient querying. JSON data extracted from external sources can be processed using a Python script. This architecture offers a structured foundation to manage, analyze, and extract insights from sports statistics data.
